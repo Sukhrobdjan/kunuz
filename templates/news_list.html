@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} All news {% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    {% for new in news %}
+    <h2>{{ new.title }}</h2>    
+    <p>{{ new.description }}</p>
+    <p>{{ new.created }}</p>
+    <p>{{ new.category  }}</p>
+    <p>{{ new.city  }}</p>
+    <p>{{ new.views }}</p>
+    {% endfor %}
+    {% endblock content %}
+</body>
+</html>
