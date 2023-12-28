@@ -54,9 +54,12 @@ def category_news(request, slug):
     return render(request,'category.html',  context)
 
 def new_detail(request, slug):
-    info = News.objects.all()
+    new = News.objects.get(slug =slug)
+
+    new.views += 1
+    new.save()
     context = {
-         'info': info,
+         'new': new,
      }
     
     return render(request, 'detail.html', context)
