@@ -29,6 +29,19 @@ def news_list(request):
     return render(request, 'news_list.html', context)
 
 
+def city_news(request, slug):
+    city = City.objects.get(slug = slug)
+    news = News.objects.filter(city = city)
+
+    context = {
+        'news': news,
+        'city': city,
+    }
+
+    return render(request,'city_news.html',  context)
+
+
+
 def category_news(request, slug):
     category = Category.objects.get(slug = slug)
     news = News.objects.filter(category = category)
@@ -39,3 +52,13 @@ def category_news(request, slug):
     }
 
     return render(request,'category.html',  context)
+
+def new_detail(request, slug):
+    info = News.objects.all()
+    context = {
+         'info': info,
+     }
+    
+    return render(request, 'detail.html', context)
+
+

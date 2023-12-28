@@ -12,7 +12,18 @@
 
 <body>
     {% block content %}
-    <h1> {{ category.title }} news </h1>
+    
+    <!-- <h2>{{ new.title }}</h2> 
+    <img src="" alt="">   
+    <p></p>
+    <p>{{ new.created }}</p>
+    <p>{{ new.category  }}</p>
+    <p>{{ new.city  }}</p>
+    <p>{{ new.views }}</p> -->
+
+   
+<h1> {{ city.title }} news </h1>
+
     <div class="row row-cols-1 row-cols-md-3 g-3"  style="width: 40rem;">
 
         {% for new in news %}
