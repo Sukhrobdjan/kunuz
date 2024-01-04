@@ -3,7 +3,7 @@ from .models import City, Category, News
 
 
 
-def category(request):
+def category(request):   
     categories = Category.objects.all()
 
     context = {
