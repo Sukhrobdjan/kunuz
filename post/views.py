@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import City, Category, News
 
+
+
 def category(request):
     categories = Category.objects.all()
 
@@ -9,6 +11,8 @@ def category(request):
     }
 
     return context
+
+
 
 def city(request):
     cities = City.objects.all()
@@ -20,6 +24,9 @@ def city(request):
     return context
 
 
+
+
+
 def news_list(request):
     news = News.objects.all()
 
@@ -27,6 +34,8 @@ def news_list(request):
         'news': news,
     }
     return render(request, 'news_list.html', context)
+
+
 
 
 def city_news(request, slug):
