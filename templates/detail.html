@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+  {% extends "base.html" %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,15 +16,22 @@
  
       <div class="row row-cols-lg-3 ">
         <div class="col" style = 'padding:0% 5% 5% 5%'>
-          <div class="p-3 border bg-light">Row column</div>
+          <div class="p-3 border bg-light">
+            <h1>Sungin yangiliklar </h1>
+            {% for nl in news_last %}
+            <a href="{% url 'new_detail' nl.slug %}">
+            <p>{{ nl.title }}</p>
+          </a>
+            {% endfor %}
+          </div>
         </div>
         <div class="col"style = 'margin:px'>
           <div class="album py-9 bg-light">
             <div class="container" >
               <div style="margin: 0%; padding: 0%;">
                 <h1>{{ new.category}}:{{ new.title }}</h1>
-              </div>
-              <div class="row row-cols-1 row-cols-sm-3 row-cols-md-3 g-3">
+            
+              <div class="row row-cols-1  ">
                 <div class="col">
                   <div class="card shadow-sm">
                     <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ new.image.url }}" xmlns="{{ new.image.url }}" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text>
@@ -46,11 +53,14 @@
                       </div>
                       <div>
                         {% for tag in new.tags.all %}
-                        <small class="text-muted" style="margin: 0; padding: 0;">#{{ tag.name}},</small>
+                        <a href="{% url 'tag_list' tag.slug %}">
+                          <small class="text-muted" style="margin: 0; padding: 0;">#{{ tag.name}},</small>
+                      </a>
                         {% endfor %}
                       </div>
                         <small class="text-muted">{{ new.created|date:'d/m/y'}}/{{ new.created|time:'H:i'}}</small>
                       </div>
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -59,7 +69,17 @@
           </div>
         </div>
         <div class="col" style = 'padding:0 5% 5%'>
-          <div class="p-3 border bg-light">Row column</div>
+          <div class="p-3 border bg-light">
+            <h1>Categoriy news</h1>
+
+            {% for nc in news_cartegory  %}
+            {% if new.title != nc.title %}
+              <a href="{% url 'new_detail' nc.slug %}">
+              <p>{{ nc.title }}</p></a>
+              <hr>
+            {% endif %}
+            {% endfor %}
+          </div>
         </div>
       </div>
 

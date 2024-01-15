@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import City, Category, News
-
+from taggit.views import Tag
 
 
 def category(request):   
@@ -64,13 +64,26 @@ def category_news(request, slug):
 
 def new_detail(request, slug):
     new = News.objects.get(slug =slug)
+    news_last = News.objects.all().order_by('created')
+    news_cartegory = News.objects.filter(category = new.category)
 
     new.views += 1
     new.save()
     context = {
          'new': new,
+         'news_last':news_last,
+         'news_cartegory':news_cartegory,
      }
     
     return render(request, 'detail.html', context)
 
 
+def tag_list(request, slug):
+    tag = Tag.objects.get(slug = slug)
+    news = News.objects.filter(tags = tag )
+
+    context = {
+        'tag': tag,
+        'news': news,
+    }
+    return render(request, 'news_list.html', context)

@@ -15,7 +15,12 @@
       <div class="album py-5 bg-light">
         <div class="container">
           <div style="margin: 0%; padding: 0%;">
+            {% if tag.name %}
+            <h1>{{ tag.name }} ga oid</h1>
+            {% else %}
             <h1>{{ category.title }} </h1>
+            {% endif %}
+
           </div>
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
